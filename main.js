@@ -1,7 +1,7 @@
 const gen = document.querySelector(".gen")
 const text =document.querySelector(".text")
 
-
+let count = 0;
 function say_quote(texts) {
     // Check if the browser supports the Web Speech API
     if ('speechSynthesis' in window) {
@@ -38,8 +38,9 @@ function get_quote(e) {
             responseText = responseText.replace("chuck", "Idan")
             responseText = responseText.replace("norris", "Idan")
             text.textContent = responseText
-            console.log(response)
+            say_quote(responseText)
             gen.classList.remove('loader')
+            count = count + 1
         },
         error: function(err) {
         Swal.fire({
@@ -48,8 +49,41 @@ function get_quote(e) {
             text: 'Something went wrong!\n Error code: 31013',
             footer: '<a href="https://codewithyembot.vercel.app">Why do I have this issue? Contact Me!</a>'
         })
+        gen.classList.remove('loader')
         }
         });          
+    }
+    if (count >= 5){
+        Swal.fire({
+            icon: 'success',
+            title: 'Hire Idan👨‍💻',
+            text: 'Let Me Create Your next Website or Project👩‍💻!!!',
+            allowOutsideClick: false,
+            footer: '<a href="https://codewithyembot.vercel.app">Hire Me!!!</a>'
+          }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+              Swal.fire({
+                title: 'Idan Don Tire🥱',
+                html: 'Buy Idan coffee😭!!!',
+                imageUrl: '/img/profile.png',
+                imageWidth: 400,
+                imageHeight: 200,
+                allowOutsideClick: false,
+                showCancelButton: true,
+                confirmButtonText: 'Yes, Sure💖!',
+                cancelButtonText: 'Nope Not Today😰',
+                reverseButtons: true,
+                imageAlt: 'Adekojo Adeyemi',
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  window.open("https://bmc.link/yembot", "_blank");
+
+                }
+              })
+            }
+          })
+        count = 0
     }
 }
 
