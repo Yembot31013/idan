@@ -91,4 +91,23 @@ video {
         transform: rotate(90deg);
     }
 }
+
+@media (max-width: 767px) {
+    .content{
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+    .content .title{
+        font-size: 200%;
+    }
+    .content .text{
+        padding: 0;
+    }
+    .content a{
+        border-radius: 1rem;
+        padding: 0.7rem 3rem;
+        font-size: 100%;
+    }
+}
   

@@ -53,7 +53,7 @@ function get_quote(e) {
         }
         });          
     }
-    if (count >= 5){
+    if (count >= 7){
         Swal.fire({
             icon: 'success',
             title: 'Hire Idan👨‍💻',
