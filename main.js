@@ -7,10 +7,13 @@ function say_quote(texts) {
     if ('speechSynthesis' in window) {
         // Create an instance of SpeechSynthesisUtterance
         var msg = new SpeechSynthesisUtterance();
-    
+        var modifiedText = texts.replace(/idan/gi, '<prosody level="slow" pitch="+20%"><emphasis level="strong" pitch="+50%">E</emphasis>done</prosody>');
         // Set the text to be spoken
-        msg.text = texts;
-    
+        // msg.text = texts;
+        console.log("mod", modifiedText)
+        msg.text = modifiedText;
+
+        msg.lang = 'en-US';
         // Select the voice for speech synthesis
         msg.voice = speechSynthesis.getVoices()[0]; // You can choose a specific voice
     
