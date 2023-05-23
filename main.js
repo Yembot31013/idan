@@ -10,7 +10,9 @@ var canTalk;
 var opacity = localStorage.getItem('opacity') ? localStorage.getItem('opacity') : 0.6
 localStorage.setItem('opacity', opacity)
 content.style.opacity = opacity
-range.value = opacity * 100
+let values = opacity * 100
+range.value = values
+tooltip.textContent = `Visibility: ${values}%`
 
 // set volume state
 setVolume()
