@@ -7,7 +7,7 @@ const icon = document.querySelector('.bx');
 var canTalk;
 
 // set opacity state
-var opacity = localStorage.getItem('opacity') ? localStorage.getItem('opacity') : 0.6
+var opacity = localStorage.getItem('opacity') ? localStorage.getItem('opacity') : 0.8
 localStorage.setItem('opacity', opacity)
 content.style.opacity = opacity
 let values = opacity * 100
