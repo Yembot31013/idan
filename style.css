@@ -119,6 +119,13 @@ video {
     gap: 0.5rem;
 }
 
+.title-text{
+    background-image: linear-gradient(45deg,#3023AE 0%,#FF0099 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 .content .title .bx{
     cursor: pointer;
 }
