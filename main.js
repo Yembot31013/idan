@@ -3,8 +3,29 @@ const text =document.querySelector(".text")
 const range =document.querySelector(".range")
 const content =document.querySelector(".content")
 const tooltip = document.querySelector('#tooltip');
+const icon = document.querySelector('.bx');
+var canTalk;
 
-localStorage.getItem('opacity')
+// set opacity state
+var opacity = localStorage.getItem('opacity') ? localStorage.getItem('opacity') : 0.6
+localStorage.setItem('opacity', opacity)
+content.style.opacity = opacity
+range.value = opacity * 100
+
+// set volume state
+setVolume()
+
+
+function setVolume() {
+  // set volume state
+  var volumeValue = localStorage.getItem('volume') ? localStorage.getItem('volume') : 'false'
+  canTalk = volumeValue == 'true' ? true : false
+  localStorage.setItem('volume', volumeValue)
+  var volumeIcon = volumeValue == 'false' ? 'bxs-volume-mute' : 'bxs-volume-full'
+  icon.classList.remove('bxs-volume-mute')
+  icon.classList.remove('bxs-volume-full')
+  icon.classList.add(volumeIcon)
+}
 
 let count = 0;
 function say_quote(texts) {
@@ -46,7 +67,9 @@ function get_quote(e) {
             responseText = responseText.replace("chuck", "Idan")
             responseText = responseText.replace("norris", "Idan")
             text.textContent = responseText
-            say_quote(responseText)
+            if (canTalk){
+              say_quote(responseText)
+            }
             gen.classList.remove('loader')
             count = count + 1
         },
@@ -99,9 +122,18 @@ function handleChange(e) {
   var values = range.value;
   value = values/100;
   content.style.opacity = value
+  localStorage.setItem('opacity', value)
   tooltip.textContent = `Visibility: ${values}%`
   show();
 }
+
+function handleVolume(e) {
+  let volumeValue = localStorage.getItem('volume')
+  volumeState = volumeValue == 'false' ? 'true' : 'false'
+  localStorage.setItem('volume', volumeState)
+  setVolume()
+}
+icon.addEventListener('click', handleVolume)
 
 gen.addEventListener('click', get_quote)
 range.addEventListener('change', handleChange)

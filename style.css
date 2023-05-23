@@ -111,7 +111,23 @@ video {
 }
 
 .content .title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 2rem;
+    white-space: nowrap;
+    gap: 0.5rem;
+}
+
+.content .title .bx{
+    cursor: pointer;
+}
+
+.bxs-volume-full:before{
+    color: green;
+}
+.bxs-volume-mute:before{
+    color: red;
 }
 
 .content .text{
