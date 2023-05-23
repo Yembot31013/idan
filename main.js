@@ -4,13 +4,15 @@ const range =document.querySelector(".range")
 const content =document.querySelector(".content")
 const tooltip = document.querySelector('#tooltip');
 
+localStorage.getItem('opacity')
+
 let count = 0;
 function say_quote(texts) {
     // Check if the browser supports the Web Speech API
     if ('speechSynthesis' in window) {
         // Create an instance of SpeechSynthesisUtterance
         var msg = new SpeechSynthesisUtterance();
-        var modifiedText = texts.replace(/idan/gi, '<prosody level="slow" pitch="+20%"><emphasis level="strong" pitch="+50%">E</emphasis>done</prosody>');
+        var modifiedText = texts.replace(/idan/gi, 'Edone');
         // Set the text to be spoken
         // msg.text = texts;
         console.log("mod", modifiedText)
