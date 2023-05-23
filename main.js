@@ -4,7 +4,11 @@ const range =document.querySelector(".range")
 const content =document.querySelector(".content")
 const tooltip = document.querySelector('#tooltip');
 const icon = document.querySelector('.bx');
+const changeBg = document.querySelector('.change');
+const bgElement = document.querySelector(".container");
+var maxNum = 64;
 var canTalk;
+
 
 // set opacity state
 var opacity = localStorage.getItem('opacity') ? localStorage.getItem('opacity') : 0.8
@@ -14,9 +18,20 @@ let values = opacity * 100
 range.value = values
 tooltip.textContent = `Visibility: ${values}%`
 
+// set bg
+var bgNum = localStorage.getItem('bg') ? localStorage.getItem('bg') : 28
+bgElement.style.backgroundImage = `url('img/bg${bgNum}.png')`;
+
 // set volume state
 setVolume()
 
+function changeBackground() {
+  var num = Math.floor(Math.random() * 65);
+  localStorage.setItem('bg', num)
+  bgElement.style.backgroundImage = `url('img/bg${num}.png')`;
+}
+
+changeBg.addEventListener('click', changeBackground)
 
 function setVolume() {
   // set volume state
