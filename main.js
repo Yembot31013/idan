@@ -1,5 +1,8 @@
 const gen = document.querySelector(".gen")
 const text =document.querySelector(".text")
+const range =document.querySelector(".range")
+const content =document.querySelector(".content")
+const tooltip = document.querySelector('#tooltip');
 
 let count = 0;
 function say_quote(texts) {
@@ -90,4 +93,49 @@ function get_quote(e) {
     }
 }
 
+function handleChange(e) {
+  var values = range.value;
+  value = values/100;
+  content.style.opacity = value
+  tooltip.textContent = `Visibility: ${values}%`
+}
+
 gen.addEventListener('click', get_quote)
+range.addEventListener('change', handleChange)
+
+// Pass the button, the tooltip, and some options, and Popper will do the
+// magic positioning for you:
+const popperInstance = Popper.createPopper(range, tooltip, {
+  placement: 'top',
+  modifiers: [
+    {
+      name: 'offset',
+      options: {
+        offset: [0, 8],
+      },
+    },
+  ],
+});
+
+function show() {
+  tooltip.setAttribute('data-show', '');
+
+  // We need to tell Popper to update the tooltip position
+  // after we show the tooltip, otherwise it will be incorrect
+  popperInstance.update();
+}
+
+function hide() {
+  tooltip.removeAttribute('data-show');
+}
+
+const showEvents = ['mouseenter', 'focus'];
+const hideEvents = ['mouseleave', 'blur'];
+
+showEvents.forEach((event) => {
+  range.addEventListener(event, show);
+});
+
+hideEvents.forEach((event) => {
+  range.addEventListener(event, hide);
+});
