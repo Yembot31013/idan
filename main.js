@@ -100,6 +100,7 @@ function handleChange(e) {
   value = values/100;
   content.style.opacity = value
   tooltip.textContent = `Visibility: ${values}%`
+  show();
 }
 
 gen.addEventListener('click', get_quote)
@@ -131,8 +132,8 @@ function hide() {
   tooltip.removeAttribute('data-show');
 }
 
-const showEvents = ['mouseenter', 'focus'];
-const hideEvents = ['mouseleave', 'blur'];
+const showEvents = ['mouseenter', 'focus', 'touchstart'];
+const hideEvents = ['mouseleave', 'blur', 'touchend'];
 
 showEvents.forEach((event) => {
   range.addEventListener(event, show);
